@@ -23,10 +23,10 @@ function UpLoadPost() {
   const updateUploadedFiles = (files) =>
     setNewUserInfo({ ...newUserInfo, profileImages: files });
 
-  const handleSubmit = event => {
+  const handleSubmit = async event => {
     debugger
     event.preventDefault();
-     const resonse =  postData(`${serverURL}/api/cocktail`, token.user.token, {
+     const resonse = await postData(`${serverURL}/api/cocktail`, token.user.token, {
       title:cocktailName,
       body:intro,
       image:"https://www.worldsofimagination.co.uk/Tizian_063.jpg",
@@ -35,7 +35,7 @@ function UpLoadPost() {
       user:token.user
  });
 
-
+      window.location.href = "/";
     
   };
 

@@ -20,8 +20,11 @@ export default function PostPage() {
   });
 
   function deletePost() {
-    const response = deleteData(`${serverURL}/api/comment${id}`, token.user.token)
+    const response = deleteData(`${serverURL}/api/cocktail/${id}`, token.user.token,{
+      user:token.user
 
+    })
+    window.location.href = "/";
   }
 
   function addComment() {
