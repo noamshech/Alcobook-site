@@ -3,23 +3,9 @@ import PostSummery from "./PostSummery";
 import serverURL, { getData } from '../server';
 
 
-export default function PostList() {
-  const [posts, setPosts] = React.useState([])
-
-  useEffect(() => {
-    async function getCocktails() {
-      const cocktails = await getData(`${serverURL}/api/cocktail`);
-
-      setPosts(cocktails);
-    }
-
-    getCocktails()
-  }, [])
-
+export default function PostList({ posts }) {
   return (
-
     <div>
-
       <div className="container">
 
         <div className="row" style={{

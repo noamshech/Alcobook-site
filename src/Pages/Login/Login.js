@@ -1,21 +1,8 @@
 import React, { useState } from 'react';
 import './Login.css';
-import PropTypes from 'prop-types';
-import { postData } from '../../server';
-
-async function loginUser(credentials) {
-   return fetch('http://localhost:8080/api/login', {
-     method: 'POST',
-     headers: {
-       'Content-Type': 'application/json'
-     },
-    body: JSON.stringify({user:credentials})
-   })
-    .then(data => data.json()) 
-
-    //return postData("login",'',credentials);
-   
-}
+import serverURL, { postData } from '../../server';
+import { Link } from 'react-router-dom';
+import Logo from "../../Resorces/Logo.png";
 
 export default function Login({ setToken }) {
   const [username, setUserName] = useState();
@@ -24,23 +11,25 @@ export default function Login({ setToken }) {
   const handleSubmit = async e => {
     e.preventDefault();
 
-    const token = await loginUser({
-      username,
-      password
+    const token = await postData(`${serverURL}/api/login`, null, {
+      user: {
+        username,
+        password
+      }
     });
-    
-    var noUser={"error": "No user."};
-    
-    setToken(token);
-  
+
+    if (token.error) { alert("Username or password are wrong") }
+    else {
+      setToken(token);
+    }
   }
 
   return (
-   
+
     <div className="login-wrapper"  >
       <div>
-        <img src="src/Resorces/Logo.png" alt=""></img>
-        </div> 
+        <img className="img-responsive" src={Logo} alt="logo" style={{ height: "50px" }} />
+      </div>
 
       <h1>Please Log In</h1>
       <form className="login-form" onSubmit={handleSubmit}>
@@ -52,26 +41,20 @@ export default function Login({ setToken }) {
           <p>Password</p>
           <input type="password" onChange={e => setPassword(e.target.value)} />
         </label>
-        <div>
-          <button type="submit">Log in</button>
+        <div >
+          <button type="submit" className="btn btn-info" style={{ color: "black" }}>Log in</button>
         </div>
       </form>
 
       <h1>Dont have a user yet?</h1>
       <h2>No problem!! sign up now for as low as 4 bitcoins!!!</h2>
-      <form className="login-form" onSubmit={handleSubmit}>
-        <label>
-          <p>Username</p>
-          <input type="text" onChange={e => setUserName(e.target.value)} />
-        </label>
-        <label>
-          <p>Password</p>
-          <input type="password" onChange={e => setPassword(e.target.value)} />
-        </label>
-        <div>
-          <button type="submit">Sign up</button>
+
+      <Link className="nav-link" to="/register" >
+        <div type="button" className="btn btn-info" style={{ color: "black" }}>
+          Register
         </div>
-      </form>
+      </Link>
+
     </div>
   )
 }

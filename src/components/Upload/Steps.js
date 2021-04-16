@@ -1,51 +1,45 @@
-import React, { useState } from "react";
+import React  from "react";
 
-export default function Steps() {
-  const [inputList, setInputList] = useState([{ firstName: "", lastName: "" }]);
-
+export default function Steps({stepsList, setStepsList}) {
   // handle input change
   const handleInputChange = (e, index) => {
-    const { name, value } = e.target;
-    const list = [...inputList];
-    list[index][name] = value;
-    setInputList(list);
+    const { value } = e.target;
+    const list = stepsList.map((step, i) => i === index ?   value  : step);
+    setStepsList(list);
   };
 
   // handle click event of the Remove button
   const handleRemoveClick = index => {
-    const list = [...inputList];
-    list.splice(index, 1);
-    setInputList(list);
+    setStepsList(stepsList.filter((step, i) => i !== index));
   };
 
   // handle click event of the Add button
   const handleAddClick = () => {
-    setInputList([...inputList, { firstName: "", lastName: "" }]);
+    setStepsList([...stepsList,  "" ]);
   };
 
   return (
 
     <div className="form-group">
-      <label htmlFor="Ingredient">Tell the world what are the steps  in order to achive the amazing Taste!</label>
+      <label htmlFor="Step">Tell the world what are the steps in order to achive the amazing Taste!</label>
 
 
 
-      {inputList.map((x, i) => {
+      {stepsList.map((step, i) => {
         return (
-          <div className="box">
+          <div className="box" key={i}>
             <input
-              name="Ingredient"
               className="form-control"
-              placeholder="Enter Ingredient"
-              value={x.firstName}
-              onChange={e => handleInputChange(e, i)}
+              placeholder={`Enter Step ${i + 1}`}
+              onChange={e => handleInputChange(e, i)
+              }
             />
 
             <div className="btn-box">
-              {inputList.length !== 1 && <button
+              {stepsList.length !== 1 && <button
                 className="mr10"
                 onClick={() => handleRemoveClick(i)}>Remove</button>}
-              {inputList.length - 1 === i && <button onClick={handleAddClick}>Add</button>}
+              {stepsList.length - 1 === i && <button onClick={handleAddClick}>Add</button>}
             </div>
           </div>
         );

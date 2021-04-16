@@ -1,26 +1,21 @@
 import React, { useState } from "react";
 
-export default function Ingredients() {
-  const [inputList, setInputList] = useState([{ firstName: "", lastName: "" }]);
-
+export default function Ingredients({ingredientsList, setIngredientsList}) {
   // handle input change
   const handleInputChange = (e, index) => {
-    const { name, value } = e.target;
-    const list = [...inputList];
-    list[index][name] = value;
-    setInputList(list);
+    const { value } = e.target;
+    const list = ingredientsList.map((ingredient, i) => i === index ? value : ingredient)
+    setIngredientsList(list);
   };
 
   // handle click event of the Remove button
   const handleRemoveClick = index => {
-    const list = [...inputList];
-    list.splice(index, 1);
-    setInputList(list);
+    setIngredientsList(ingredientsList.filter((ingredient, i) => i !== index));
   };
 
   // handle click event of the Add button
   const handleAddClick = () => {
-    setInputList([...inputList, { firstName: "", lastName: "" }]);
+    setIngredientsList([...ingredientsList, "" ]);
   };
 
   return (
@@ -30,22 +25,21 @@ export default function Ingredients() {
 
 
 
-      {inputList.map((x, i) => {
+      {ingredientsList.map((ingredient, i) => {
         return (
-          <div className="box">
+          <div className="box" key={i}>
             <input
-              name="Ingredient"
               className="form-control"
-              placeholder="Enter Ingredient"
-              value={x.firstName}
-              onChange={e => handleInputChange(e, i)}
+              placeholder={`Enter Ingredient ${i + 1}`}
+              onChange={e => handleInputChange(e, i)
+              }
             />
 
             <div className="btn-box">
-              {inputList.length !== 1 && <button
+              {ingredientsList.length !== 1 && <button
                 className="mr10"
                 onClick={() => handleRemoveClick(i)}>Remove</button>}
-              {inputList.length - 1 === i && <button onClick={handleAddClick}>Add</button>}
+              {ingredientsList.length - 1 === i && <button onClick={handleAddClick}>Add</button>}
             </div>
           </div>
         );

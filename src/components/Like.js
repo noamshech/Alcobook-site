@@ -1,6 +1,6 @@
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { faHeart as farHeart } from "@fortawesome/free-regular-svg-icons";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
@@ -8,21 +8,22 @@ import serverURL, { postData } from "../server";
 import useToken from "../Pages/Login/useToken";
 
 function Like({ likes, id, itemType }) {
-  const { token } = useToken()
-  const isIncluded = likes.includes(token.user._id);
-  const [liked, setLiked] = useState(isIncluded);
+  const { token } = useToken();
+  let isLiked = likes.includes(token.user._id);
+  const [liked, setLiked] = useState(isLiked);
+  console.log(itemType, likes, liked);
 
   return (
     <div
-      onClick={() => {
-        postData(`${serverURL}/api/${itemType}/${id}`, token.user.token, token)
+      onClick={async () => {
+        const response = await postData(`${serverURL}/api/${itemType}/${id}`, token.user.token, token);
         if (!liked) {
           likes.push(token.user._id);
         } 
         else {
           likes.splice(likes.indexOf(token.user._id), 1);
         }
-        setLiked((state) => !state)
+        setLiked(state => !state);
       }}
     >
       {liked ? (

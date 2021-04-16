@@ -13,7 +13,7 @@ export default function CommentList({ comments }) {
               </p>
             ) : (
               comments.map((data, key) => {
-                return <Comment key={key} body={data.body} author={data.author} id={data._id} createdAt={data.createdAt} likes={data.likes} />;
+                return <Comment key={key} body={data.body} author={data.author} id={data._id} createdAt={data.createdAt} authorRef={data.authorRef} likes={data.likes} />;
               })
             )
           }

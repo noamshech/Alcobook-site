@@ -13,6 +13,7 @@ import useToken from './Pages/Login/useToken';
 
 import About from './Pages/About';
 import UpLoadPost from './Pages/UploadPost';
+import Register from './Pages/Login/Register';
 
 
 
@@ -22,7 +23,24 @@ function App() {
   const { token, setToken } = useToken();
 
   if (!token) {
-    return <Login setToken={setToken} />
+    return (
+      <HashRouter>
+      <Switch>
+
+      <Route path="/register">
+            <Register setToken={setToken}/>
+          </Route>
+
+      <Route path="/">
+      <Login setToken={setToken} />
+          </Route>
+
+
+    
+
+    </Switch>
+    </HashRouter>
+    );
   }
   return (
     <HashRouter>
