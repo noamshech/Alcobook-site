@@ -3,9 +3,8 @@
   background-color: #43A58D;
   min-height: 100vh;
 }
-
-.App-logo {
-  pointer-events: none;
+.navbar {
+  background-color: #43A58D;
 }
 
 .App-header {

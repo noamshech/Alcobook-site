@@ -1,37 +1,23 @@
 import React from 'react';
 import Like from '../Like';
+import './Comment.css';
 
-
-export default function Comment({body,author,authorRef,createdAt,likes}) {
+export default function Comment({id, body, author, createdAt, likes }) {
   return (
-
-    
-            <div className="col-md-8">
-              <div className="media g-mb-30 media-comment">
-                 <div className="media-body u-shadow-v18 g-bg-secondary g-pa-30">
-                  <div className="g-mb-15">
-                    <h5 className="h5 g-color-gray-dark-v1 mb-0">{author}</h5>
-                    <span className="g-color-gray-dark-v4 g-font-size-12">{createdAt}</span>
-                  </div>
-                  <p>{body}</p>
-                  <ul className="list-inline d-sm-flex my-0">
-                    <li className="list-inline-item g-mr-20">
-                      <a className="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#!">
-                        {
-                          //TODO when yo u press like it will update the page again.
-                        }
-                       <Like/>
-                        {likes?.length}
-                      </a>
-                    </li>
-                    
-                    
-                  </ul>
-                </div>
-              </div>
-            </div>
-            
-          
-   
+    //add a button to delete this post
+    <div className="w-100 mb-3">
+      <div className="media g-mb-30 media-comment">
+        <div className="media-body u-shadow-v18 g-bg-secondary g-pa-30">
+          <div className="g-mb-15">
+            <h5 className="h5 g-color-gray-dark-v1 mb-0">{author}</h5>
+            <span className="g-color-gray-dark-v4 g-font-size-12">{new Date(createdAt).toLocaleString()}</span>
+          </div>
+          <div className="d-flex justify-content-between">
+            <p>{body}</p>
+            <Like likes={likes} id={id} itemType="comment" />
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }

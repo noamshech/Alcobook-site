@@ -1,8 +1,8 @@
 import './App.css';
-import React, { useState } from 'react';
+import React from 'react';
 import Header from './components/Header';
 import Footer from './components/footer';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { HashRouter, Route, Switch } from 'react-router-dom';
 import Main from './Pages/Main';
 import PostPage from './Pages/Post';
 import Dashboard from './components/Dashboard/Dashboard';
@@ -10,47 +10,55 @@ import Preferences from './components/Preferences/Preferences';
 import Login from './Pages/Login/Login';
 import PropTypes from 'prop-types';
 import useToken from './Pages/Login/useToken';
-import PostSummery from './components/PostSummery';
+
+import About from './Pages/About';
+import UpLoadPost from './Pages/UploadPost';
 
 
- 
- 
+
+
 
 function App() {
-  const { token, setToken } = useToken ();
- 
-  if(!token) {
+  const { token, setToken } = useToken();
+
+  if (!token) {
     return <Login setToken={setToken} />
   }
   return (
-    <BrowserRouter>
-      <div>
-        <Header />
-        <main className="container align-items-center" >
-          <Switch>
-            <Route path="/dashboard">
-              <Dashboard />
-            </Route>
-            {//todo do react rauter for speacil id
-            }
-            <Route path="/post">
-              <PostPage />
-            </Route>
+    <HashRouter>
+      <Header />
 
-            
-            <Route path="/preferences">
-              <Preferences />
-            </Route>
-            <Route exact path="/">
-              <Main />
-            </Route>
-          </Switch>
+      <main className="container align-items-center" >
+        <Switch>
+          <Route path="/dashboard">
+            <Dashboard />
+          </Route>
+          {//todo do react rauter for speacil id
+          }
+          <Route path="/post/:id">
+            <PostPage />
+          </Route>
+
+          <Route path="/about">
+            <About />
+          </Route>
+          <Route path="/uploadpost">
+            <UpLoadPost />
+          </Route>
+
+          <Route path="/preferences">
+            <Preferences />
+          </Route>
+          <Route exact path="/">
+            <Main />
+          </Route>
+        </Switch>
 
 
-        </main>
-        <Footer />
-      </div>
-    </BrowserRouter>
+      </main>
+
+      <Footer />
+    </HashRouter>
   );
 }
 

@@ -182,24 +182,13 @@ text-align: center;
   font-size: 0px;	
   text-align: center;
   display: inline-block;
-}
-.cardbox-comments .comment-avatar img{
-  margin-top: 1px;
-  margin-right: 10px;
-  position: relative;
-  display: inline-block;
-  text-align: center;
-  width: 40px;
-  height: 40px;
+  width: 100%;
 }
 .cardbox-comments .comment-body {
   overflow: auto;
 }
 .search {
- position: relative;
- right: -60px;
- top: -40px;
- margin-bottom: -40px;
+  position: relative;
  border: 2px solid #f4f4f4;	
  width: 100%;
  overflow: hidden;

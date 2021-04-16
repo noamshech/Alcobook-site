@@ -7,8 +7,8 @@ function Main() {
   return (
     <div className="row justify-content-center">
       <Search />
-      <PostList/>
-      
+      <PostList />
+
 
     </div>
   )
