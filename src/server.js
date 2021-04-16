@@ -1,19 +1,20 @@
-const serverURL = 'http://localhost:8080';
+const serverURL = 'http://localhost:3000';
 
 export async function postData(url = serverURL, token = null, data = {}) {
   const response = await fetch(url, {
     method: 'POST',
-    headers: token ? {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`
-    } : {
-      
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data)
+    headers: token
+      ? {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        }
+      : {
+          'Content-Type': 'application/json',
+        },
+    body: JSON.stringify(data),
   })
-  .then(res => res.json())
-  .catch(console.error);
+    .then((res) => res.json())
+    .catch(console.error);
 
   return response;
 }
@@ -21,15 +22,17 @@ export async function postData(url = serverURL, token = null, data = {}) {
 export async function getData(url = serverURL, token = null) {
   const response = await fetch(url, {
     method: 'GET',
-    headers: token ? {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`
-    } : {
-      'Content-Type': 'application/json'
-    },
+    headers: token
+      ? {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        }
+      : {
+          'Content-Type': 'application/json',
+        },
   })
-  .then(res => res.json())
-  .catch(console.error);
+    .then((res) => res.json())
+    .catch(console.error);
 
   return response;
 }
@@ -39,12 +42,12 @@ export async function patchData(url = serverURL, token = '', data = {}) {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`
+      Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify(data)
+    body: JSON.stringify(data),
   })
-  .then(res => res.json())
-  .catch(console.error);
+    .then((res) => res.json())
+    .catch(console.error);
 
   return response;
 }
@@ -54,12 +57,12 @@ export async function deleteData(url = serverURL, token = '', data = {}) {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`
+      Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify(data)
+    body: JSON.stringify(data),
   })
-  .then(res => res.json())
-  .catch(console.error);
+    .then((res) => res.json())
+    .catch(console.error);
 
   return response;
 }

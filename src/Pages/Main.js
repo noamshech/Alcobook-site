@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import PostList from '../components/ListPosts';
 
 import Search from '../components/Search';
 import serverURL, { getData } from '../server';
 
 function Main() {
-  const [posts, setPosts] = React.useState([])
+  const [posts, setPosts] = React.useState([]);
 
   useEffect(() => {
     async function getCocktails() {
@@ -14,19 +14,15 @@ function Main() {
       setPosts(cocktails);
     }
 
-    getCocktails()
-  }, [])
-  
+    getCocktails();
+  }, []);
+
   return (
-    <div className="row justify-content-center">
-      
-      
+    <div className='row justify-content-center'>
       <Search setPosts={setPosts} />
       <PostList posts={posts} />
-
-
     </div>
-  )
+  );
 }
 
 export default Main;

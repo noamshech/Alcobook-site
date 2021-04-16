@@ -1,20 +1,21 @@
-import React, { useEffect } from "react";
-import PostSummery from "./PostSummery";
-import serverURL, { getData } from '../server';
-
+import React from 'react';
+import PostSummery from './PostSummery';
 
 export default function PostList({ posts }) {
   return (
     <div>
-      <div className="container">
-
-        <div className="row" style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center"
-        }}>
+      <div className='container'>
+        <div
+          className='row'
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
           {posts.map((item, i) => (
-            <PostSummery key={i}
+            <PostSummery
+              key={i}
               id={item._id}
               title={item.title}
               image={item.image}
@@ -27,12 +28,8 @@ export default function PostList({ posts }) {
               comments={item.comments}
             />
           ))}
-
         </div>
-
       </div>
-
     </div>
-
   );
 }
