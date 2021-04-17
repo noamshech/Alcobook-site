@@ -83,7 +83,7 @@ export default function PostPage() {
                             value='save changes'
                             onClick={deletePost}
                           >
-                            deelete comment
+                            delete comment
                           </button>
                           <button className='btn' onClick={onButtonClick}>
                             edit

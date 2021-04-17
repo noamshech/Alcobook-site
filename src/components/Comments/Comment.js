@@ -16,6 +16,8 @@ export default function Comment({
   const [edit, setEdit] = useState(false);
   const [commentBody, setCommentBody] = useState(body);
 
+  const isAuthor = token.user._id === authorRef;
+
   function onButtonClick() {
     setEdit((edit) => !edit);
   }
@@ -45,7 +47,7 @@ export default function Comment({
     //add a button to delete this post
     <div className='w-100 mb-3'>
       <div className='media g-mb-30 media-comment'>
-        <div className='media-body u-shadow-v18 g-bg-secondary g-pa-30'>
+        <div className='media-body p-4 u-shadow-v18 g-bg-secondary g-pa-30'>
           <div className='g-mb-15'>
             <h5 className='h5 g-color-gray-dark-v1 mb-0'>{author}</h5>
 
@@ -61,7 +63,7 @@ export default function Comment({
                   value='discard changes'
                   onClick={discard}
                 >
-                  duscard changes
+                  discard changes
                 </button>
 
                 <button
@@ -69,7 +71,7 @@ export default function Comment({
                   value='save changes'
                   onClick={deleteComment}
                 >
-                  deelete comment
+                  delete comment
                 </button>
                 <textarea
                   className='textArea'
@@ -86,11 +88,17 @@ export default function Comment({
                 </button>
               </div>
             ) : (
-              <div>
-                <button className='btn' onClick={onButtonClick}>
-                  edit
-                </button>
+              <div className='w-100 d-flex justify-content-between pr-4'>
                 {commentBody}
+                {isAuthor && (
+                  <button
+                    className='btn'
+                    onClick={onButtonClick}
+                    style={{ padding: '0.5rem' }}
+                  >
+                    edit
+                  </button>
+                )}
               </div>
             )}
 
