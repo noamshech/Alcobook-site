@@ -54,11 +54,7 @@ export default function Header({ setToken }) {
                 Home
               </Link>
             </li>
-            <li className='nav-item'>
-              <Link className='nav-link' to='/about'>
-                About
-              </Link>
-            </li>
+            
             <li className='nav-item'>
               <Link className='nav-link' to='/uploadpost'>
                 New Post
@@ -83,10 +79,10 @@ export default function Header({ setToken }) {
                 onClick={() => {
                   localStorage.clear();
                   setToken('');
-                  console.log(token);
+                 
                 }}
               >
-                {' '}
+                
                 Log out
               </Link>
             </li>

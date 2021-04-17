@@ -57,16 +57,11 @@ function App() {
             <SearchComment />
           </Route>
 
-          <Route path='/about'>
-            <About />
-          </Route>
           <Route path='/uploadpost'>
             <UpLoadPost />
           </Route>
 
-          <Route path='/preferences'>
-            <Preferences />
-          </Route>
+          
 
           <Route exact path='/'>
             <Main />

@@ -39,8 +39,7 @@ export default function PostPage() {
       body: commentInput.current.value,
       user: token.user,
     });
-    post.comments.push(comment);
-    setPost(post);
+    window.location.reload();
   }
 
   useEffect(() => {
