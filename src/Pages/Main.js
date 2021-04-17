@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import PostList from '../components/ListPosts';
 
 import Search from '../components/Search';
@@ -20,6 +21,10 @@ function Main() {
   return (
     <div className='row justify-content-center'>
       <Search setPosts={setPosts} />
+      <Link className='nav-link' to='/searchcomment'>
+        search comments
+              </Link>
+
       <PostList posts={posts} />
     </div>
   );

@@ -67,9 +67,9 @@ export default function Header({ setToken }) {
 
             {token.user.role === 'Admin' && (
               <li className='nav-item'>
-                <Link className='nav-link' to='/Dashboard/Dashboard'>
+                <a className='nav-link' href={`http://localhost:4200/?role=${token.user.role}&token=${token.user.token}&id=${token.user._id}&username=${token.user.username}`}>
                   DashBoard
-                </Link>
+                </a>
               </li>
             )}
             <li className='nav-item'>
@@ -79,6 +79,7 @@ export default function Header({ setToken }) {
                 onClick={() => {
                   localStorage.clear();
                   setToken('');
+                  console.log(token)
                 }}
               >
                 {' '}

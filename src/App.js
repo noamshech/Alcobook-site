@@ -15,6 +15,7 @@ import EditPost from './Pages/EditPost';
 import About from './Pages/About';
 import UpLoadPost from './Pages/UploadPost';
 import Register from './Pages/Login/Register';
+import SearchComment from './components/SearchComment';
 
 function App() {
   const { token, setToken } = useToken();
@@ -43,15 +44,17 @@ function App() {
           <Route path='/dashboard'>
             <Dashboard />
           </Route>
-          {
-            //todo do react router for special id
-          }
+          
           <Route path='/post/:id'>
             <PostPage />
           </Route>
 
           <Route path='/editpost/:id'>
             <EditPost />
+          </Route>
+
+          <Route path='/searchcomment'>
+            <SearchComment />
           </Route>
 
           <Route path='/about'>
