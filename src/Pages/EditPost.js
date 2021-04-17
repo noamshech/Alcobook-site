@@ -5,11 +5,11 @@ import Ingredients from '../components/Upload/Ingredients';
 import Steps from '../components/Upload/Steps';
 import serverURL, { getData, patchData, postData } from '../server';
 import useToken from './Login/useToken';
-import { useParams } from 'react-router';
+import { Redirect, useParams } from 'react-router';
 
 function EditPost() {
   let { id } = useParams();
-
+  const [submited,setSubmited]= useState(false);
   const [post, setPost] = React.useState({
     title: '',
     image: '',
@@ -37,7 +37,7 @@ function EditPost() {
     setNewUserInfo({ ...newUserInfo, profileImages: files });
 
   const handleSubmit = async (event) => {
-    debugger;
+    
     event.preventDefault();
     await patchData(`${serverURL}/api/cocktail/${id}`, token.user.token, {
       change: {
@@ -49,7 +49,10 @@ function EditPost() {
       },
       user: token.user,
     });
-
+    setSubmited(true)
+  
+      
+    //window.location.href = `/post/:${id}`;
 
   };
 
@@ -73,6 +76,8 @@ function EditPost() {
     setPicSrc(post.image);
     setCocktailName(post.title);
   }, [id]);
+  if(submited)
+  return(<Redirect to= {  `/post/${id}` }/>)
 
   return (
     <div>

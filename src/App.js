@@ -17,6 +17,7 @@ import serverURL from './server';
 import About from './Pages/About';
 import UpLoadPost from './Pages/UploadPost';
 import Register from './Pages/Login/Register';
+import SearchComment from './components/SearchComment';
 
 const socket = socketIOClient(`${serverURL}`, {
   withCredentials: true,
@@ -60,15 +61,17 @@ function App() {
           <Route path='/dashboard'>
             <Dashboard />
           </Route>
-          {
-            //todo do react router for special id
-          }
+          
           <Route path='/post/:id'>
             <PostPage />
           </Route>
 
           <Route path='/editpost/:id'>
             <EditPost />
+          </Route>
+
+          <Route path='/searchcomment'>
+            <SearchComment />
           </Route>
 
           <Route path='/about'>
