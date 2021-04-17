@@ -13,7 +13,7 @@ function UpLoadPost() {
   const [ingredientsList, setIngredientsList] = useState(['']);
   const [stepsList, setStepsList] = useState(['']);
   const [intro, setIntro] = React.useState();
-  const [picSrc, setPicSrc] = React.useState();
+  const [picSrc, setPicSrc] = useState("https://brokencauldrontaproom.com/wp-content/uploads/2020/05/michelada-royalty-free-image-1585322014.jpg");
   const [cocktailName, setCocktailName] = React.useState();
   const { token } = useToken();
 
@@ -63,7 +63,7 @@ function UpLoadPost() {
         />
         <Steps stepsList={stepsList} setStepsList={setStepsList} />
 
-        <button type='submit'>Create New User</button>
+        <button type='submit'>Create Cocktail</button>
       </form>
     </div>
   );

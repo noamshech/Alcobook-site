@@ -1,9 +1,10 @@
 import React from "react";
 import { Link } from 'react-router-dom';
+import useToken from "../Pages/Login/useToken";
 import Logo from '../Resorces/Logo.png';
 
-export default function Header() {
-
+export default function Header({setToken}) {
+  const { token } = useToken();
   return (
 
     <nav className="navbar navbar-expand-lg navbar-dark sticky-top mb-4">
@@ -27,10 +28,18 @@ export default function Header() {
               <Link className="nav-link" to="/about">About</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/preferences">preferences</Link>
+              <Link className="nav-link" to="/uploadpost">New Post</Link>
             </li>
+
+           {token.user.role === "Admin" &&
             <li className="nav-item">
               <Link className="nav-link" to="/Dashboard/Dashboard">DashBoard</Link>
+            </li>
+            }
+            <li className="nav-item">
+           
+              <Link    className="btn-danger" to="/" onClick={(() => { localStorage.clear(); setToken(""); })}> Log out</Link>
+              
             </li>
 
 

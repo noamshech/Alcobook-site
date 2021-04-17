@@ -1,7 +1,7 @@
 import { faComments } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useRef } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import CommentList from '../components/Comments/CommentList';
 import Like from '../components/Like';
 import serverURL, { deleteData, getData, postData } from '../server';
@@ -34,11 +34,15 @@ export default function PostPage() {
   }
 
   function addComment() {
-    postData(`${serverURL}/api/comment`, token.user.token, {
+    const comment =postData(`${serverURL}/api/comment`, token.user.token, {
       id: id,
       body: commentInput.current.value,
       user: token.user,
     });
+      post.comments.push(comment);
+      setPost(post);
+
+    
   }
 
   useEffect(() => {
@@ -51,8 +55,11 @@ export default function PostPage() {
     getCocktails();
   }, [id]);
 
-  function onButtonClick() {}
-  console.log('hereee', post.authorRef);
+  function onButtonClick() {
+
+
+  }
+  
   return (
     <div>
       {/* ==============================================
@@ -83,11 +90,13 @@ export default function PostPage() {
                             value='save changes'
                             onClick={deletePost}
                           >
-                            delete comment
+                            delete Cocktail
                           </button>
-                          <button className='btn' onClick={onButtonClick}>
-                            edit
-                          </button>
+                          <Link className="nav-link" to={`/editpost/${id}`} >
+                            <div type="button" className="btn btn-info" style={{ color: "black" }}>
+                              Edit
+                            </div>
+                          </Link>
                         </div>
                       ) : (
                         <div></div>

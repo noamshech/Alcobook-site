@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Intro({ setIntro }) {
+export default function Intro({ setIntro, intro = "" }) {
   return (
     <div className='form-group'>
       <label htmlFor='exampleTextarea'>
@@ -10,6 +10,7 @@ export default function Intro({ setIntro }) {
         className='form-control'
         id='exampleTextarea'
         rows={3}
+        defaultValue={intro}
         onChange={(e) => setIntro(e.target.value)}
       />
     </div>

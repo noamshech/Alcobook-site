@@ -28,6 +28,7 @@ export default function Ingredients({ ingredientsList, setIngredientsList }) {
         return (
           <div className='box' key={i}>
             <input
+              defaultValue={ingredient}
               className='form-control'
               placeholder={`Enter Ingredient ${i + 1}`}
               onChange={(e) => handleInputChange(e, i)}

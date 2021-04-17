@@ -29,6 +29,7 @@ export default function Steps({stepsList, setStepsList}) {
         return (
           <div className="box" key={i}>
             <input
+            defaultValue={step}
               className="form-control"
               placeholder={`Enter Step ${i + 1}`}
               onChange={e => handleInputChange(e, i)

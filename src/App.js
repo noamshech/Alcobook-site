@@ -10,7 +10,7 @@ import Preferences from './components/Preferences/Preferences';
 import Login from './Pages/Login/Login';
 import PropTypes from 'prop-types';
 import useToken from './Pages/Login/useToken';
-
+import EditPost from './Pages/EditPost';
 import About from './Pages/About';
 import UpLoadPost from './Pages/UploadPost';
 import Register from './Pages/Login/Register';
@@ -44,7 +44,7 @@ function App() {
   }
   return (
     <HashRouter>
-      <Header />
+      <Header setToken={setToken}/>
 
       <main className="container align-items-center" >
         <Switch>
@@ -57,6 +57,10 @@ function App() {
             <PostPage />
           </Route>
 
+          <Route path="/editpost/:id">
+            <EditPost />
+          </Route>
+
           <Route path="/about">
             <About />
           </Route>
@@ -67,6 +71,7 @@ function App() {
           <Route path="/preferences">
             <Preferences />
           </Route>
+        
           <Route exact path="/">
             <Main />
           </Route>

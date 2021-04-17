@@ -1,4 +1,4 @@
-const serverURL = 'http://localhost:3000';
+const serverURL = 'http://localhost:8080';
 
 export async function postData(url = serverURL, token = null, data = {}) {
   const response = await fetch(url, {
