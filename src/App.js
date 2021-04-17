@@ -18,15 +18,15 @@ import About from './Pages/About';
 import UpLoadPost from './Pages/UploadPost';
 import Register from './Pages/Login/Register';
 
+const socket = socketIOClient(`${serverURL}`, {
+  withCredentials: true,
+});
+
 function App() {
   const { token, setToken } = useToken();
   const [response, setResponse] = useState('');
 
   useEffect(() => {
-    const socket = socketIOClient(`${serverURL}`, {
-      withCredentials: true,
-    });
-
     socket.connect();
 
     socket.on('online', (data) => {
@@ -34,7 +34,7 @@ function App() {
     });
 
     return socket.disconnect;
-  }, [token]);
+  }, []);
 
   if (!token) {
     return (
