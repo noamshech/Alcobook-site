@@ -39,6 +39,8 @@ export default function Comment({
     deleteData(`${serverURL}/api/comment/${id}`, token.user.token, {
       user: token.user,
     });
+    
+    window.location.reload()
   }
 
   console.log(token.user._id);

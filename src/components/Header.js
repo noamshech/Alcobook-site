@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import useToken from '../Pages/Login/useToken';
 import Logo from '../Resorces/Logo.png';
+import serverURL, { deleteData, postData } from '../server';
 
 export default function Header({ setToken, online }) {
   const { token } = useToken();
@@ -37,11 +38,7 @@ export default function Header({ setToken, online }) {
                 Home
               </Link>
             </li>
-            <li className='nav-item'>
-              <Link className='nav-link' to='/about'>
-                About
-              </Link>
-            </li>
+            
             <li className='nav-item'>
               <Link className='nav-link' to='/uploadpost'>
                 New Post
@@ -62,10 +59,10 @@ export default function Header({ setToken, online }) {
                 onClick={() => {
                   localStorage.clear();
                   setToken('');
-                  console.log(token)
+                 
                 }}
               >
-                {' '}
+                
                 Log out
               </Link>
             </li>

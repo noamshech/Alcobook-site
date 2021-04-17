@@ -34,13 +34,12 @@ export default function PostPage() {
   }
 
   function addComment() {
-    const comment =postData(`${serverURL}/api/comment`, token.user.token, {
+    const comment = postData(`${serverURL}/api/comment`, token.user.token, {
       id: id,
       body: commentInput.current.value,
       user: token.user,
     });
-      post.comments.push(comment);
-      setPost(post);
+    window.location.reload()
 
     
   }

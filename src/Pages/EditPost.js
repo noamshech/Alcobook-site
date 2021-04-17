@@ -94,6 +94,7 @@ function EditPost() {
         {
           <FileUpload
             setPicSrc={setPicSrc}
+            picSrc={picSrc}
             accept='.jpg,.png,.jpeg'
             label='Add a picture of your Cocktail!'
             multiple
@@ -109,6 +110,7 @@ function EditPost() {
         <Steps stepsList={stepsList} setStepsList={setStepsList} />
 
         <button type='submit'>save changes</button>
+        <button type='submit' onClick={() => { return(<Redirect to= {  `/post/${id}` }/>)}}>discard changes</button>
       </form>
     </div>
   );
