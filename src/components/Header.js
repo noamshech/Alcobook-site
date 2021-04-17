@@ -1,10 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import socketIOClient from 'socket.io-client';
 import { Link } from 'react-router-dom';
 import useToken from '../Pages/Login/useToken';
 import Logo from '../Resorces/Logo.png';
+import serverURL from '../server';
 
-export default function Header({ setToken, online }) {
+const socket = socketIOClient(`${serverURL}`, {
+  withCredentials: true,
+});
+
+export default function Header({ setToken }) {
   const { token } = useToken();
+  const [online, setOnline] = useState('');
+
+  useEffect(() => {
+    socket.on('online', (data) => {
+      console.log(data);
+      setOnline(data);
+    });
+
+    return socket.close;
+  }, []);
+
   return (
     <nav className='navbar navbar-expand-lg navbar-dark sticky-top mb-4'>
       <div className='container'>
@@ -17,7 +34,7 @@ export default function Header({ setToken, online }) {
           />
         </Link>
         <div style={{ flex: '1', textAlign: 'center', fontWeight: 'bold' }}>
-          Online users: {online}
+          Online users: {online.length}
         </div>
         <button
           className='navbar-toggler'

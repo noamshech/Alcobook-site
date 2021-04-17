@@ -1,6 +1,5 @@
 import './App.css';
-import React, { useState, useEffect } from 'react';
-import socketIOClient from 'socket.io-client';
+import React from 'react';
 import Header from './components/Header';
 import Footer from './components/footer';
 import { HashRouter, Route, Switch } from 'react-router-dom';
@@ -12,29 +11,13 @@ import Login from './Pages/Login/Login';
 import PropTypes from 'prop-types';
 import useToken from './Pages/Login/useToken';
 import EditPost from './Pages/EditPost';
-import serverURL from './server';
 
 import About from './Pages/About';
 import UpLoadPost from './Pages/UploadPost';
 import Register from './Pages/Login/Register';
 
-const socket = socketIOClient(`${serverURL}`, {
-  withCredentials: true,
-});
-
 function App() {
   const { token, setToken } = useToken();
-  const [response, setResponse] = useState('');
-
-  useEffect(() => {
-    socket.connect();
-
-    socket.on('online', (data) => {
-      setResponse(data);
-    });
-
-    return socket.disconnect;
-  }, []);
 
   if (!token) {
     return (
@@ -53,7 +36,7 @@ function App() {
   }
   return (
     <HashRouter>
-      <Header setToken={setToken} online={response.online?.length} />
+      <Header setToken={setToken} />
 
       <main className='container align-items-center'>
         <Switch>
