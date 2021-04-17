@@ -67,19 +67,23 @@ export default function Header({ setToken }) {
 
             {token.user.role === 'Admin' && (
               <li className='nav-item'>
-                <a className='nav-link' href={`http://localhost:4200/?role=${token.user.role}&token=${token.user.token}&id=${token.user._id}&username=${token.user.username}`}>
+                <a
+                  className='nav-link'
+                  href={`http://localhost:4200/?role=${token.user.role}&token=${token.user.token}&id=${token.user._id}&username=${token.user.username}`}
+                >
                   DashBoard
                 </a>
               </li>
             )}
             <li className='nav-item'>
               <Link
-                className='btn-danger'
+                className='btn btn-success'
+                style={{ padding: '0.2rem' }}
                 to='/'
                 onClick={() => {
                   localStorage.clear();
                   setToken('');
-                  console.log(token)
+                  console.log(token);
                 }}
               >
                 {' '}

@@ -34,15 +34,13 @@ export default function PostPage() {
   }
 
   function addComment() {
-    const comment =postData(`${serverURL}/api/comment`, token.user.token, {
+    const comment = postData(`${serverURL}/api/comment`, token.user.token, {
       id: id,
       body: commentInput.current.value,
       user: token.user,
     });
-      post.comments.push(comment);
-      setPost(post);
-
-    
+    post.comments.push(comment);
+    setPost(post);
   }
 
   useEffect(() => {
@@ -55,16 +53,8 @@ export default function PostPage() {
     getCocktails();
   }, [id]);
 
-  function onButtonClick() {
-
-
-  }
-  
   return (
     <div>
-      {/* ==============================================
-     add a button to delete this post
-  =============================================== */}
       <section className='hero' style={{ color: 'black' }}>
         <div className='container'>
           <div className='row'>
@@ -79,35 +69,45 @@ export default function PostPage() {
                         alt='User'
                       />
                     </div>
-                    <div className='media-body'>
-                      <p className='m-0'>{post.author}</p>
-                      <h1 className='m-0'>{post.title}</h1>
+                    <div className='media-body d-flex justify-content-between'>
+                      <div style={{ flex: '1' }}>
+                        <p className='m-0'>{post.author}</p>
+                        <h1 className='m-0'>{post.title}</h1>
 
-                      {token.user._id === post.authorRef ? (
-                        <div>
-                          <button
-                            className='btn-danger'
-                            value='save changes'
-                            onClick={deletePost}
-                          >
-                            delete Cocktail
-                          </button>
-                          <Link className="nav-link" to={`/editpost/${id}`} >
-                            <div type="button" className="btn btn-info" style={{ color: "black" }}>
+                        <small>
+                          <span>
+                            <i className='icon ion-md-time' />{' '}
+                            {new Date(post.createdAt).toLocaleString()}
+                          </span>
+                        </small>
+                      </div>
+
+                      {token.user._id === post.authorRef ||
+                      token.user.role === 'Admin' ? (
+                        <div className='d-flex'>
+                          <div>
+                            <button
+                              className='btn btn-danger'
+                              onClick={deletePost}
+                              style={{ padding: '0.5rem' }}
+                            >
+                              delete
+                            </button>
+                          </div>
+                          <div>
+                            <Link
+                              className='nav-link btn btn-info'
+                              to={`/editpost/${id}`}
+                              type='button'
+                              style={{ color: 'black', padding: '0.5rem' }}
+                            >
                               Edit
-                            </div>
-                          </Link>
+                            </Link>
+                          </div>
                         </div>
                       ) : (
-                        <div></div>
+                        ''
                       )}
-
-                      <small>
-                        <span>
-                          <i className='icon ion-md-time' />{' '}
-                          {new Date(post.createdAt).toLocaleString()}
-                        </span>
-                      </small>
                     </div>
                   </div>
                   {/*/ media */}
