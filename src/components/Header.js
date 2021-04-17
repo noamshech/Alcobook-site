@@ -12,6 +12,7 @@ const socket = socketIOClient(`${serverURL}`, {
 export default function Header({ setToken }) {
   const { token } = useToken();
   const [online, setOnline] = useState('');
+  const isAdmin = token.user.role === 'Admin';
 
   useEffect(() => {
     socket.on('online', (data) => {
@@ -61,7 +62,21 @@ export default function Header({ setToken }) {
               </Link>
             </li>
 
-            {token.user.role === 'Admin' && (
+            {isAdmin &&
+              <li className='nav-item'>
+              <Link className='nav-link' to={`/users`}>
+                Users
+              </Link>
+            </li>
+            }
+
+            <li className='nav-item'>
+              <Link className='nav-link' to={`/profile`}>
+                Profile
+              </Link>
+            </li>
+
+            {isAdmin && (
               <li className='nav-item'>
                 <a
                   className='nav-link'

@@ -16,6 +16,9 @@ import About from './Pages/About';
 import UpLoadPost from './Pages/UploadPost';
 import Register from './Pages/Login/Register';
 import SearchComment from './components/SearchComment';
+import Profile from './Pages/UserProfile';
+import ListUsers from './components/ListUsers';
+import UserProfile from './Pages/UserProfile';
 
 function App() {
   const { token, setToken } = useToken();
@@ -59,6 +62,14 @@ function App() {
 
           <Route path='/uploadpost'>
             <UpLoadPost />
+          </Route>
+
+          <Route path='/users'>
+            <ListUsers />
+          </Route>
+
+          <Route path='/profile'>
+            <UserProfile id={token.user._id} />
           </Route>
 
           

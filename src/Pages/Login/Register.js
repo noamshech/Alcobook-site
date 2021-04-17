@@ -26,7 +26,7 @@ export default function Register() {
   return (
     <div className='login-wrapper'>
       <div>
-        <img src={Logo} alt=''></img>
+        <img src={Logo}  style={{height:"15vh"}} className="img-fluid" alt=''></img>
       </div>
 
       <h1>Register</h1>
